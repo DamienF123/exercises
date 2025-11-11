@@ -1,11 +1,16 @@
-/* custom property */
+/* variables */
 :root {
-	--accent-color: #800000;  /* could also be coded #800 */
-	--gradient-color: #f6bb73;
+	--primary-color: #931420;
+	--accent-color: #f6bb73;
+	--light-accent: #fffded;
+	--light: white;
+	--dark: black;
+}
 
-	--light_menu: white;
-	--mid_menu: antiquewhite;
-	--dark_menu: black;
+/* custom font for h1 */
+@font-face {
+	font-family: 'Ink Free';
+	src: url('../fonts/InkFree-Regular.ttf') format('truetype');
 }
 
 /* reset */
@@ -15,253 +20,136 @@
 	box-sizing: border-box;
 }
 
-/* default styles */
+/* the default styles for the elements */
 body {
 	font-family: Arial, Helvetica, sans-serif;
-    font-size: calc(15px + .2vw);
-	width: min(80%, 1024px);
-	line-height: 1.5;
-	margin: auto;
-	border: 2px solid var(--accent-color);
+    font-size: 100%;
+    width: 80%;
+    margin: auto;
+    border: 3px solid var(--primary-color);
 }
-h1, h2, h3, p, ul {
-	padding: .25em 0;
+
+header, section, aside, footer { padding: 1em; }
+h1, h2, h3, p, article, blockquote { padding-bottom: .5em; }
+
+h1 { 
+	font-size: 150%; 
+	font-family: 'Ink Free', 'Segoe Script', cursive;
 }
-a:hover, a:focus{
-	font-style: italic;
-	color: var(--accent-color);
-}
-h1 {
-	font-size: 150%;
-}
-h2 {
-	font-size: 130%;
-	color: var(--accent-color);
-}
-h3 {
-	font-size: 105%;
-}
-ul {
-	margin-left: 2em;
-}
+h2 { font-size: 120%; }
+h3 { font-size: 110%; }
+
+a:focus, a:hover { font-style: italic; }
+ul { list-style-type: none; }
+li { padding-bottom: .75em; }
 
 /* the styles for the header */
 header {
-	text-align: center;
-	line-height: 1.2;
-	border-bottom: 2px solid var(--accent-color);
-	background-image: linear-gradient(
-	    30deg, var(--gradient-color) 0%, white 30%, white 65%, var(--gradient-color) 100%);
-	& h2 {
-		font-size: 175%;
-		padding: .5em 0 0 0;
-	}
-	& h3 {
-		font-size: 130%;
-		font-style: italic;
-		padding-bottom: 1em;
-	}
-	& img {
-		display: none;
-	}
+	border-bottom: 3px solid var(--primary-color);
+	background-image: linear-gradient(30deg, 
+		var(--accent-color) 0%, 
+		var(--light-accent) 25%, 
+		var(--light) 50%, 
+		var(--light-accent) 75%, 
+		var(--accent-color) 100%);
+}
+header h2 {
+	font-size: 175%;
+	color: var(--primary-color);
+	padding-bottom: 0;
+}
+header h3 {
+	font-size: 130%;
+	font-style: italic;
+}
+header img {
+	float: left;
+	margin: 0 30px;
+	width: clamp(40px, 15%, 66px);
 }
 
-/* the styles for the main content */
+/* the styles for the main element */
 main {
+	clear: left;
 	display: flex;
-	flex-direction: column-reverse;
-	padding: 0 1em 1em;
-	& blockquote {
-		font-style: italic;
-		padding-left: 1em;
-	}
-	& h3 + img { /* speaker images */
-		width: clamp(40px, 50%, 75px);
-		border: 4px double var(--accent-color);
-		border-radius: 10px;
-	}
 }
 
 /* the styles for the section */
 section {
-	padding-left: .5em;
-	border-bottom: 8px double var(--accent-color);
-	& img {
-		width: clamp(100px, 50%, 250px);
-		float: right;
-		margin: 0 1em .25em;
-	}
+	flex-basis: 75%;
+}
+section h1 {
+	padding-top: .5em;
+}
+section h2 {
+	color: var(--primary-color);
+}
+section article + h2 {
+	clear: left;
+	border-top: 3px solid var(--primary-color);
+	padding-top: .5em;
+}
+section blockquote {
+	font-style: italic;
+	margin-left: 2em;
+}
+
+/* the styles for the article */
+article {
+	border-top: 3px solid var(--primary-color);
+	padding-top: .5em;
+	margin-bottom: .5em;
+}
+
+/* Figure and image styling */
+figure.speaker-photo {
+	float: left;
+	margin: .25em 1em 1em 0;
+	width: min(100%, 225px);
+	text-align: center;
+}
+figure.speaker-photo img {
+	width: 100%;
+	border: 1px solid var(--dark);
+}
+figure.speaker-photo figcaption {
+	font-size: 0.9em;
+	font-style: italic;
+	margin-bottom: .25em;
 }
 
 /* the styles for the aside */
 aside {
-	padding-right: .5em;
+	flex-basis: 25%;
+}
+aside h2 {
+	color: var(--primary-color);
+}
+aside img {
+	margin-bottom: .9em;
 }
 
 /* the styles for the footer */
 footer {
-	background-color: var(--accent-color);
-	& p {
-		text-align: center;
-		color: white;
-		padding: 1em 0;
-	}
+	background-color: var(--primary-color);
+}
+footer p {
+	text-align: center;
+	color: white;
+	padding-bottom: 0; 
 }
 
-/* CSS class */
-.featured {
-	border-top: 2px solid var(--accent-color);
-	border-bottom: 2px solid var(--accent-color);
-	padding: .5em 0 1em;
-}
-.speaker {
-	& h1 {
-		color: var(--accent-color);
-	}
-	& h2 {
-		color: black;
-	}
-	& p {
-		padding: .5em 0; 
-	}	
-}
-.large {
-	font-size: 125%;
+/* Contact list icons */
+ul li i {
+	color: var(--primary-color);
+	margin-right: .5em;
 }
 
-/* styles for the menu */
-.menu {
-	position: absolute;
-	left: 0;
-	background-color: var(--accent-color);
-	width: 40%;
-	display: none;
+/* Link colors mixed from accent and primary */
+section a {
+	color: color-mix(in srgb, var(--accent-color) 65%, var(--primary-color) 35%);
+	text-decoration: none;
 }
-
-.navbar {
-	clear: left;
-	position: relative;
-	background-color: var(--accent-color);
-	& a {
-		display: block;
-		padding: 1em;
-		text-decoration: none;
-		margin: 0 2px 2px 0;
-	}
-	& a:link, a:visited { 
-		color: var(--light_menu);
-	}
-	& a:hover, a:focus, a.current {
-		background-color: var(--mid_menu);
-		color: var(--dark_menu);
-	}
-	& ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-}
-
-.menu-btn {                                
-    display: block;
-    padding: 1em;
-    color: var(--light_menu); 
-}
-.menu-btn::after { 
-    content: "\2630";                    /* hamburger symbol */
-}
-
-#checkbox-toggle { display: none; }      /* checkbox is always hidden */
-
-/* when checkbox is checked, show menu and change icon */
-#checkbox-toggle:checked ~ .menu { 
-    display: block; 
-}
-#checkbox-toggle:checked ~ .menu-btn::after {
-    content: "\2716";                    /* close (X) symbol */
-}
-
-.submenu {
-	position: relative;
-	& small::after { content: "\25b6"; }  /* right triangle */
-	& small { margin-left: .25em; }
-}
-
-.dropdown {
-	position: absolute;
-	top:0;
-	left: 100%;
-	width: 100%;
-	background-color: var(--accent-color);
-	color: var(--light_menu);
-	display: none;
-	& > li a { margin: 2px; }
-}
-
-.submenu:hover > .dropdown {
-	display: block;
-}
-
-/* media queries */
-@media only screen and (min-width: 922px) {
-	main {
-		flex-direction: row;
-	}
-	
-	section {
-		flex-basis: 75%;
-		border-bottom: none;
-	}
-	
-	aside {
-		flex-basis: 25%;
-	}
-}
-
-@media only screen and (min-width: 786px) {
-	.menu {
-		display: flex;
-		position: relative;
-		width: 100%;
-		& li { 
-			flex-basis: 20%; 
-			text-align: center;
-		}
-	}
-	
-	.menu-btn { display: none; }
-
-	#checkbox-toggle:checked ~ .menu { display: flex; }
-
-	.submenu {
-		& small::after { content: "\25bc"; }  /* down triangle */
-	}
-	
-	.dropdown {
-		top: auto;
-		left: 0;
-		right: 0;
-		& > li a { margin: 0 2px 2px; }
-	}
-
-	.navbar {
-		& a {
-			margin: 0 1px 2px;
-		}
-	}
-
-	.menu > li:first-child a { margin-left: 0; }
-	.menu > li:last-child a { margin-right: 0; }
-}
-
-@media only screen and (min-width: 658px) {
-	header {
-		text-align: left;
-		& img {
-			display: block;
-			width: clamp(40px, 15%, 80px);
-			float: left;
-			margin: .75em 1em;
-		}
-	}
+section a:hover {
+	text-decoration: underline;
 }
