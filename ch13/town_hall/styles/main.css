@@ -96,6 +96,7 @@ section {
 /* Added video styling */
 video {
 	width: 90%;
+	max-width: 90%;
 	display: block;
 	margin: 1em auto;
 }
