@@ -93,6 +93,13 @@ section {
 	}
 }
 
+/* Added video styling */
+video {
+	width: 90%;
+	display: block;
+	margin: 1em auto;
+}
+
 /* the styles for the aside */
 aside {
 	padding-right: .5em;
